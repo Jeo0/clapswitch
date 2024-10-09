@@ -3,32 +3,13 @@
 
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   int sensorBool = analogRead(32);
   Serial.println(sensorBool);
 
-  /*
-
-
-  if input [0]:
-    delay 0.1 second
-  else:
-    execute instruction
-
-  while (timer <.9 second) and (array is not full):
-    if input:
-      array[...] = input
-      delay(0.1)
-
-    timer++
-    
-  execute instruction
-  */
 
   /*
   if input:
