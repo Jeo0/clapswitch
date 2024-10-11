@@ -16,7 +16,7 @@ void loop() {
     start timer
     instruction.append(timer)
   
-  if another input && timer > 100 ms && index != 7:   // once valid time, another input is good
+  if another input && timer > 100 ms && index != 7:   // once valid time, another input is good, index is not 7
     instruction.append(timer)           // store instructions[index]
     index++
     timer = 0
@@ -53,7 +53,7 @@ void loop() {
     Continuous
   };
   void ParseThis(float* instructions){
-
+    // instructions = {0, 150, 0, 0, 0, 0, 0, 0};
 
     // if valid; update the state accordingly
     state = ...
@@ -64,6 +64,7 @@ void loop() {
     // code from "https://docs.arduino.cc/built-in-examples/digital/BlinkWithoutDelay/"
 
     unsigned long currentMillis = *timer; 
+    // unsigned long currentMillis = millis();  // original code
     // interval = 1000 ms
 
     if (currentMillis - previousMillis >= interval) {
@@ -71,16 +72,17 @@ void loop() {
       previousMillis = currentMillis;
 
       // if the LED is off turn it on and vice-versa:
-      if (ledState == LOW) {
-        ledState = HIGH;
-      } else {
-        ledState = LOW;
-      }
+      ledState = !ledState;
 
       // set the LED with the ledState of the variable:
       digitalWrite(ledPin, ledState);
   }
   
+  */
+
+  /* 
+  // if there comes an input: within 1000 ms;   not less than 120 ms;   store
+  // else if no input:  within 1000 ms;                                 
   */
   
 
