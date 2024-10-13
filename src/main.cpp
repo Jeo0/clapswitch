@@ -1,9 +1,12 @@
 #include <Arduino.h>
 #include "functions.h"
+#include "defs.h"
 
 
 void setup() {
   Serial.begin(9600);
+  pinMode(MicPin, INPUT);
+  pinMode(OptocouplerPin, OUTPUT);
 }
 
 void loop() {
@@ -14,9 +17,20 @@ void loop() {
   /*
   if input:
     start timer
+    flag first = true
     instruction.append(timer)
+  */
+  if (analogRead(MicPin)){
+    previousMillis = currentMillis;
+    firstFlag = true;
+    instruction[instructIndex] = previousMillis;
+  }
+
+
+  /*
+
   
-  if another input && timer > 100 ms && index != 7:   // once valid time, another input is good, index is not 7
+  if another input && timer > 100 ms && index != 7 && flag_first == true:   // once valid time, another input is good, index is not 7
     instruction.append(timer)           // store instructions[index]
     index++
     timer = 0
@@ -33,6 +47,7 @@ void loop() {
   if timer > 1000 ms:
     index = 0
     timer = 0
+    flag_first = false
     if (ParseThis(instruction) == true)
       current_instruction = instruction
 
